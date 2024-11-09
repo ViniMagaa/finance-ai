@@ -12,7 +12,7 @@ export default async function TransactionsPage() {
     <div className="p-6 space-y-6">
       <div className="flex w-full justify-between items-center">
         <h1 className="font-bol text-2xl">Transações</h1>
-        <Button className="rounded-full">
+        <Button className="rounded-full font-bold">
           Adicionar transação
           <ArrowDownUpIcon />
         </Button>
