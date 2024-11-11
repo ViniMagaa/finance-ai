@@ -43,14 +43,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { addTransaction } from "../_actions/add-transaction";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, {
     message: "O nome é obrigatório",
   }),
-  amount: z.string().trim().min(1, {
-    message: "O valor é obrigatório",
-  }),
+  amount: z
+    .string()
+    .trim()
+    .min(1, {
+      message: "O valor é obrigatório",
+    })
+    .transform((amount) => parseFloat(amount.replace("R$", ""))),
   type: z.nativeEnum(TransactionType, {
     required_error: "O tipo é obrigatório",
   }),
@@ -66,10 +72,12 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function AddTransactionButton() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      amount: "",
+      amount: undefined,
       category: TransactionCategory.OTHER,
       date: new Date(),
       name: "",
@@ -78,13 +86,21 @@ export default function AddTransactionButton() {
     },
   });
 
-  function onSubmit(data: FormSchema) {
-    console.log(data);
+  async function onSubmit(data: FormSchema) {
+    try {
+      await addTransaction({ ...data });
+      setIsDialogOpen(false);
+      form.reset();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
     <Dialog
+      open={isDialogOpen}
       onOpenChange={(open) => {
+        setIsDialogOpen(open);
         if (!open) {
           form.reset();
         }
