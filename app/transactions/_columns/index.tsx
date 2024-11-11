@@ -1,36 +1,14 @@
 "use client";
 
-import {
-  Transaction,
-  TransactionCategory,
-  TransactionPaymentMethod,
-} from "@prisma/client";
-import { ColumnDef } from "@tanstack/react-table";
-import TransactionTypeBadge from "../_components/type-badge";
-import { PencilIcon, TrashIcon } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
-
-const TRANSACTION_CATEGORY_LABELS = {
-  [TransactionCategory.EDUCATION]: "Educação",
-  [TransactionCategory.ENTERTAINMENT]: "Entretenimento",
-  [TransactionCategory.FOOD]: "Alimentação",
-  [TransactionCategory.HEALTH]: "Saúde",
-  [TransactionCategory.HOUSE]: "Habitação",
-  [TransactionCategory.OTHER]: "Outro",
-  [TransactionCategory.SALARY]: "Salário",
-  [TransactionCategory.TRANSPORTATION]: "Transporte",
-  [TransactionCategory.UTILITY]: "Utilidades",
-};
-
-const TRANSACTION_PAYMENT_METHOD_LABELS = {
-  [TransactionPaymentMethod.BANK_SLIP]: "Transferência Bancária",
-  [TransactionPaymentMethod.BANK_TRANSFER]: "Boleto Bancário",
-  [TransactionPaymentMethod.CASH]: "Dinheiro",
-  [TransactionPaymentMethod.CREDIT_CARD]: "Cartão de Crédito",
-  [TransactionPaymentMethod.DEBIT_CARD]: "Cartão de Débito",
-  [TransactionPaymentMethod.OTHER]: "Outro",
-  [TransactionPaymentMethod.PIX]: "Pix",
-};
+import {
+  TRANSACTION_CATEGORY_LABELS,
+  TRANSACTION_PAYMENT_METHOD_LABELS,
+} from "@/app/_constants/transactions";
+import { Transaction } from "@prisma/client";
+import { ColumnDef } from "@tanstack/react-table";
+import { PencilIcon, TrashIcon } from "lucide-react";
+import TransactionTypeBadge from "../_components/type-badge";
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
