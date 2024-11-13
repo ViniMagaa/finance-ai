@@ -3,6 +3,7 @@ import { Progress } from "@/app/_components/ui/progress";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import { TRANSACTION_CATEGORY_LABELS } from "@/app/_constants/transactions";
 import { TotalExpensePerCategory } from "@/app/_data/get-dashboard/type";
+import { formatCurrency } from "@/app/_utils/currency";
 
 type ExpensesPerCategoryProps = {
   expensesPerCategory: TotalExpensePerCategory[];
@@ -28,10 +29,7 @@ export default function ExpensesPerCategory({
             </div>
             <Progress value={category.percentageOfTotal} />
             <div className="text-sm text-muted-foreground">
-              {Intl.NumberFormat("pt-br", {
-                style: "currency",
-                currency: "BRL",
-              }).format(category.totalAmount)}
+              {formatCurrency(category.totalAmount)}
             </div>
           </div>
         ))}

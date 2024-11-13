@@ -52,3 +52,13 @@ export const TRANSACTION_TYPE_OPTIONS = Object.entries(
   value: key,
   label: value,
 }));
+
+export const TRANSACTION_PAYMENT_METHOD_ICONS = {
+  [TransactionPaymentMethod.BANK_SLIP]: "bank-slip.svg",
+  [TransactionPaymentMethod.BANK_TRANSFER]: "bank-transfer.svg",
+  [TransactionPaymentMethod.CASH]: "money.svg",
+  [TransactionPaymentMethod.CREDIT_CARD]: "credit-card.svg",
+  [TransactionPaymentMethod.DEBIT_CARD]: "debit-card.svg",
+  [TransactionPaymentMethod.OTHER]: "other.svg",
+  [TransactionPaymentMethod.PIX]: "pix.svg",
+};
