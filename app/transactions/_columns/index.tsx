@@ -58,7 +58,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     accessorKey: "actions",
     header: "",
     cell: ({ row: { original: transaction } }) => (
-      <div className="space-x-1">
+      <div className="space-x-1" key={transaction.id}>
         <Button variant="ghost" size="icon" className="text-muted-foreground">
           <TrashIcon />
         </Button>
