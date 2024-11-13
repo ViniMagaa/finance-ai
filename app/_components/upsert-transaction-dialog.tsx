@@ -244,7 +244,7 @@ export default function UpsertTransactionDialog({
               name="date"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Método de pagamento</FormLabel>
+                  <FormLabel>Data</FormLabel>
                   <DatePicker value={field.value} onChange={field.onChange} />
                   <FormMessage />
                 </FormItem>
